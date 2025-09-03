@@ -3,7 +3,7 @@ import InputText from "../inputText"
 import ComboBox from "../comboBox"
 import CustomButton from "../button"
 import { useState } from "react"
-
+import { v4 as uuidv4 } from 'uuid';
 
 const FormCadastro = (props)=>{
     const times = ["Back-End","Front-End","Data-Science", "DevOps", "Mobile", "Innovations and Administration"]
@@ -15,8 +15,8 @@ const FormCadastro = (props)=>{
     
     function aoSalvar(event){
         event.preventDefault()
-        console.log(nome, cargo, imagem, time);
         props.aoCadastar({
+            id: uuidv4(),
             nome,
             cargo,
             imagem,

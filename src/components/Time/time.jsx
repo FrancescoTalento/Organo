@@ -1,24 +1,28 @@
 import { useState } from 'react';
 import Colaborador from '../Colaborador/colaborador';
+import hexToRgba from 'hex-to-rgba';
 import './time.css'
 
 const Time = (props)=>{
-    const bgColorStyle ={backgroundColor: props.time.corSecundaria};
-    const borderColor ={borderColor:props.time.corPrimaria};
+
+    const bgColorStyle ={backgroundColor: hexToRgba(props.time.cor,"0.6")};
+    const borderColor ={borderColor:props.time.cor};
 
     const colorChangeHandler = (event)=>{
         props.colorSetter(event.target.value,props.time.nome);
+        
     }
     return(
         props.colaboradores.length > 0 ? <section className='time' style={bgColorStyle}>
-            <input type='color' className='input-color' value={props.time.corSecundaria} onChange={colorChangeHandler}/>
+            <input type='color' className='input-color' value={props.time.cor} onChange={colorChangeHandler}/>
             <h3 style={borderColor}>{props.time.nome}</h3>
             <div className='colaboradores'>
-                {props.colaboradores.map((colaborador, indice) => {
+                {props.colaboradores.map((colaborador) => {
                     return <Colaborador 
-                            key={indice} 
+                            key={colaborador.id} 
                             colaborador={colaborador} 
-                            corDeFundo = {props.time.corPrimaria}
+                            corDeFundo = {props.time.cor}
+                            onDelete = {props.onDeleteColaborador}
                             />
                 })}
             </div>
