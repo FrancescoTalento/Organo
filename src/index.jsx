@@ -5,7 +5,7 @@ import Time from './components/Time/time'
 import Rodape from './components/rodape/rodape'
 
 const App = ()=>{
-    const times = 
+    const [times, setTimes] = useState(
     [
         {
             nome:"Back-End",
@@ -42,7 +42,7 @@ const App = ()=>{
             corPrimaria:"#FF8A29",
             corSecundaria:"#FFEEDF"
         }
-    ]
+    ])
       const inicial = [
     {
       nome: 'JULIANA AMOASEI',
@@ -194,9 +194,15 @@ const App = ()=>{
 
     const addNovoColaborador = (colaborador)=>{
         setColaboradores([...colaboradores,colaborador ])
-        console.log(colaboradores);
+    }
 
-
+    function changeTeamColor(color, nameTeam){
+      setTimes(times.map((time) => {
+        if(time.nome === nameTeam){
+          return {...time,corSecundaria:color}
+        }
+        return time
+      }))
     }
     
    return( 
@@ -207,7 +213,10 @@ const App = ()=>{
                 <Time 
                     key={indice} 
                     time={item} 
-                    colaboradores={colaboradores.filter((c) => c.time === item.nome)}/>)}
+                    colaboradores={colaboradores.filter((c) => c.time === item.nome)}
+                    colorSetter= {changeTeamColor}
+                />
+                  )}
             <Rodape/>
         </div>
    )
