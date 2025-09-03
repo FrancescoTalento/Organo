@@ -228,6 +228,11 @@ const App = ()=>{
     const addNovoColaborador = (colaborador)=>{
         setColaboradores([...colaboradores,colaborador ])
     }
+    const addNovoTime = (time)=>{
+      console.log("add novo time",time);
+      setTimes([...times,time]);
+    }
+
     function deleteColaborador(id){
       setColaboradores(colaboradores.filter((c) => c.id !== id))
     }
@@ -244,7 +249,11 @@ const App = ()=>{
    return( 
         <div className='App'>
             <Banner/>
-            <FormCadastro aoCadastar={addNovoColaborador}/>
+            <FormCadastro 
+              aoCadastrarCard={addNovoColaborador} 
+              aoCadastrarTime={addNovoTime} 
+              times={times.map((time) => time.nome)}
+            />
             {times.map((item) => 
                 <Time 
                     key={item.id} 

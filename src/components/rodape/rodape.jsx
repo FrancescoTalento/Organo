@@ -26,7 +26,7 @@ const Rodape = ()=>{
         </section>
         <section>
             <p>
-                Desenvolvido por Alura.
+                Made By Francesco Talento.
             </p>
         </section>
     </footer>)

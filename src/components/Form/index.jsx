@@ -6,16 +6,19 @@ import { useState } from "react"
 import { v4 as uuidv4 } from 'uuid';
 
 const FormCadastro = (props)=>{
-    const times = ["Back-End","Front-End","Data-Science", "DevOps", "Mobile", "Innovations and Administration"]
+    //const times = ["Back-End","Front-End","Data-Science", "DevOps", "Mobile", "Innovations and Administration"]
     
         const [nome, setNome] = useState('')
         const [cargo, setCargo] = useState('')
         const [imagem, setImagem] = useState('')
         const [time, setTime] = useState("Back-End")
+
+        const [timeNome, setTimeNome] = useState('')
+        const [timeCor, setTimeCor] = useState('')
     
-    function aoSalvar(event){
+    function onSubmitCard(event){
         event.preventDefault()
-        props.aoCadastar({
+        props.aoCadastrarCard({
             id: uuidv4(),
             nome,
             cargo,
@@ -29,11 +32,24 @@ const FormCadastro = (props)=>{
         setTime("Back-End")
         
     }
+    function onSubmitTime(event){
+        event.preventDefault()
+        props.aoCadastrarTime({
+            id: uuidv4(),
+            nome:timeNome,
+            cor: timeCor
+        })
+
+
+
+        setTimeCor('')
+        setTimeNome('')
+    }
 
     return(
         <section className="formulario">
             
-            <form onSubmit={aoSalvar}>
+            <form onSubmit={onSubmitCard}>
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
                 <InputText 
                     required={true}
@@ -60,7 +76,7 @@ const FormCadastro = (props)=>{
                 />
                 
                 <ComboBox 
-                    times={times} 
+                    times={props.times} 
                     label="Times" 
                     required={true}
                     valor={time}
@@ -69,6 +85,27 @@ const FormCadastro = (props)=>{
 
                 <CustomButton>
                     Criar Card
+                </CustomButton>
+            </form>
+            <form onSubmit={onSubmitTime}>
+                <h2>Preencha os dados para criar o card do colaborador.</h2>
+                <InputText 
+                    required={true}
+                    label="Nome" 
+                    placeholder="Digite o nome do Time"
+                    valor={timeNome}
+                    setterFunc={setTimeNome}
+                />
+                
+                <InputText 
+                    required={true} 
+                    label="Cor" 
+                    placeholder="Digite a cor do time"
+                    valor={timeCor}
+                    setterFunc={setTimeCor}
+                />
+                <CustomButton>
+                    Criar um novo Time
                 </CustomButton>
             </form>
         </section>
