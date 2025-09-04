@@ -23,6 +23,7 @@ const Time = (props)=>{
                             colaborador={colaborador} 
                             corDeFundo = {props.time.cor}
                             onDelete = {props.onDeleteColaborador}
+                            onFavorite={props.onFavorite}
                             />
                 })}
             </div>

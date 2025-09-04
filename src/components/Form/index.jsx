@@ -1,5 +1,5 @@
 import "./style.css"
-import InputText from "../inputText"
+import Input from "../Input"
 import ComboBox from "../comboBox"
 import CustomButton from "../button"
 import { useState } from "react"
@@ -47,11 +47,11 @@ const FormCadastro = (props)=>{
     }
 
     return(
-        <section className="formulario">
+        <section className="formulario-container">
             
-            <form onSubmit={onSubmitCard}>
+            <form className="formulario" onSubmit={onSubmitCard}>
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
-                <InputText 
+                <Input 
                     required={true}
                     label="Nome" 
                     placeholder="Digite seu nome"
@@ -59,7 +59,7 @@ const FormCadastro = (props)=>{
                     setterFunc={setNome}
                 />
                 
-                <InputText 
+                <Input 
                     required={true} 
                     label="Cargo" 
                     placeholder="Digite seu cargo"
@@ -67,7 +67,7 @@ const FormCadastro = (props)=>{
                     setterFunc={setCargo}
                 />
                 
-                <InputText 
+                <Input 
                     label="Imagem" 
                     placeholder="Digite o endereço da imagem"
                     valor={imagem}
@@ -87,9 +87,9 @@ const FormCadastro = (props)=>{
                     Criar Card
                 </CustomButton>
             </form>
-            <form onSubmit={onSubmitTime}>
+            <form className="formulario" onSubmit={onSubmitTime}>
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
-                <InputText 
+                <Input 
                     required={true}
                     label="Nome" 
                     placeholder="Digite o nome do Time"
@@ -97,12 +97,13 @@ const FormCadastro = (props)=>{
                     setterFunc={setTimeNome}
                 />
                 
-                <InputText 
+                <Input 
                     required={true} 
                     label="Cor" 
                     placeholder="Digite a cor do time"
                     valor={timeCor}
                     setterFunc={setTimeCor}
+                    type={"color"}
                 />
                 <CustomButton>
                     Criar um novo Time
